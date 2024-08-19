@@ -40,10 +40,10 @@ def jscdfest(Zs, S, r=1, n=100):
   est_cdfY = np.vectorize(lambda y : (1/n)*np.sum(Zs.ravel() < y) - r*S.cdf(y))
   return est_cdfY
 
-def jspdfest(Zs, S, k, Sbnd=[-np.inf, np.inf], h=1, r=1, n=100):
+def jspdfest(Zs, S, k, Sbnds=[-np.inf, np.inf], h=1, r=1, n=100):
   def est_pdfY(y):
       kde = (1/n)*np.sum(k((y-Zs.ravel())/h)/h)
-      C = quad(lambda s: (k((y-s)/h)/h)*S.pdf(s), Sbnd[0], Sbnd[1])[0]
+      C = quad(lambda s: (k((y-s)/h)/h)*S.pdf(s), Sbnds[0], Sbnds[1])[0]
       # C = S.pdf(y)
       return kde-r*C
       
