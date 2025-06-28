@@ -6,3 +6,5 @@
 iframe_figures
 *.obj
 *.dat
+*.pkl
+*.npy
